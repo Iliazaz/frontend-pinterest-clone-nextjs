@@ -4,18 +4,11 @@ import React from 'react'
 import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip'
 import Link from 'next/link'
 import {
-  Bell,
-  House,
-  LayoutPanelLeft,
-  MessageCircleMore,
   Settings,
-  SquarePlus,
 } from 'lucide-react'
-import logo from '../../../public/Pinterest.svg'
+import logo from '../../../../public/Pinterest.svg'
 import { NavigateProps } from './types/types'
 import { navigate } from './constants/sidebar.constants'
-
-
 
 export const Navigate: React.FC<NavigateProps> = ({
   className,

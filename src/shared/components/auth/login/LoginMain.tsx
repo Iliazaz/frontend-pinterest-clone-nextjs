@@ -4,7 +4,7 @@ import React from 'react'
 import { FormFailed } from '../../ui/form-failed'
 import { Button } from '../../ui/button'
 import Image from 'next/image'
-import logo from '../../../../public/Pinterest.svg'
+import logo from '../../../../../public/Pinterest.svg'
 import { cn } from '@/shared/lib/utils'
 
 interface LoginMainProps {

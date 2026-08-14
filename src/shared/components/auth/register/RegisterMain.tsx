@@ -4,7 +4,7 @@ import Image from 'next/image'
 import React from 'react'
 import { FormFailed } from '../../ui/form-failed'
 import { Button } from '../../ui/button'
-import logo from '../../../../public/Pinterest.svg'
+import logo from '../../../../../public/Pinterest.svg'
 import { FormAvatarRegister } from '../../ui/form-avatar-register'
 import { cn } from '@/shared/lib/utils'
 

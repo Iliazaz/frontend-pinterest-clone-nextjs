@@ -1,10 +1,8 @@
 import React from 'react'
-import { Input } from '../ui/input'
 import Image from 'next/image'
 import Link from 'next/link'
 import { cn } from '@/shared/lib/utils'
 import { ArrowPopoverProfile } from './ArrowPopoverProfile'
-import { Search } from 'lucide-react'
 import { SearchHeaders } from './Search'
 
 interface IHeader {
