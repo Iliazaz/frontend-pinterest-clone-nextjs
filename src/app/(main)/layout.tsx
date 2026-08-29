@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 import { Open_Sans, Roboto_Mono } from 'next/font/google'
 import '../globals.css'
-import { Sidebar } from '@/shared/components/sidebar/Sidebar'
-import { Header } from '@/shared/components/header/Header'
-import { TooltipProvider } from '@/shared/components/ui/tooltip'
+import { Sidebar } from '@/components/sidebar/Sidebar'
+import { Header } from '@/components/header/Header'
+import { TooltipProvider } from '@/components/ui/tooltip'
 
 // Основной шрифт — Open_Sans (поддерживает кириллицу)
 const openSans = Open_Sans({

@@ -1,4 +1,4 @@
-import { AuthMain } from '@/shared/components/auth/AuthMain'
+import { AuthMain } from '@/components/auth/AuthMain'
 
 export default function Auth() {
   return (

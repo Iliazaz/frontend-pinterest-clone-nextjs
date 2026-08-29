@@ -1,9 +1,7 @@
 import type { Metadata } from 'next'
 import { Open_Sans, Roboto_Mono } from 'next/font/google'
 import './globals.css'
-import { Sidebar } from '@/shared/components/sidebar/Sidebar'
-import { Header } from '@/shared/components/header/Header'
-import { TooltipProvider } from '@/shared/components/ui/tooltip'
+import Providers from '@/components/auth/providers'
 
 // Основной шрифт — Open_Sans (поддерживает кириллицу)
 const openSans = Open_Sans({
@@ -29,9 +27,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
       className={`${openSans.variable} ${robotoMono.variable} h-full antialiased`}
     >
       <body className='min-h-full min-w-full flex justify-start'>
-        <TooltipProvider delayDuration={200}>  
-            {children}
-        </TooltipProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   )
