@@ -38,5 +38,5 @@ export interface IAuthMe {
 }
 
 export interface IAuthLogout {
-  messaage: string
+  message: string
 }

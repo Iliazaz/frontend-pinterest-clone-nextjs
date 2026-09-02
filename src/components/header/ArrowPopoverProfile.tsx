@@ -1,17 +1,24 @@
+'use client'
+
 import React from 'react'
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
 import { ChevronDown } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
+import { useLogout } from '@/hook/auth/useLogout'
+import { IAuthMe } from '@/shared/types/auth.interface'
 
 interface IArrowPopoverProfile {
+  data: IAuthMe
   className?: string
 }
 
 export const ArrowPopoverProfile: React.FC<IArrowPopoverProfile> = ({
+  data,
   className,
 }) => {
+  const { isPending, onSubmit } = useLogout()
   return (
     <Popover>
       <PopoverTrigger>
@@ -29,14 +36,20 @@ export const ArrowPopoverProfile: React.FC<IArrowPopoverProfile> = ({
           Сейчас:
         </span>
         <Link
-          href='/profile'
+          href={`/profile/${data.id}`}
           className='flex gap-3 items-center p-3 rounded-sm hover:bg-state'
         >
-          <Image className='bg-lime-600 p-6 rounded-full' src='' alt='' />
+          <Image
+            width={60}
+            height={60}
+            className='bg-lime-600 rounded-full'
+            src={data.avatar}
+            alt='avatar'
+          />
 
           <div className=''>
-            <p className='font-bold '>nickName</p>
-            <span className='text-disabled-text'>test@test.com</span>
+            <p className='font-bold '>{data.nickName}</p>
+            <span className='text-disabled-text'>{data.email}</span>
           </div>
         </Link>
 
@@ -51,8 +64,11 @@ export const ArrowPopoverProfile: React.FC<IArrowPopoverProfile> = ({
           Добавить аккаунт Pinterest
         </Link>
 
-        <div className='items-center p-2 font-semibold rounded-sm hover:bg-state'>
-          Выход
+        <div
+          onClick={onSubmit}
+          className='items-center p-2 font-semibold rounded-sm cursor-pointer hover:bg-state'
+        >
+          {isPending ? 'Выход...' : 'Выход'}
         </div>
       </PopoverContent>
     </Popover>

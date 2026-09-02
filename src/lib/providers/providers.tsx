@@ -1,21 +1,12 @@
 'use client'
 
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { FC, PropsWithChildren, useState } from 'react'
+import { QueryClientProvider } from '@tanstack/react-query'
+import { FC, PropsWithChildren } from 'react'
 import { Toaster } from 'sonner'
-import { TooltipProvider } from '../ui/tooltip'
+import { client } from '@/lib/query-client'
+import { TooltipProvider } from '@/components/ui/tooltip'
 
-const Providers: FC<PropsWithChildren<unknown>> = ({ children }) => {
-  const [client] = useState(
-    new QueryClient({
-      defaultOptions: {
-        queries: {
-          refetchOnWindowFocus: false,
-        },
-      },
-    }),
-  )
-
+const Providers: FC<PropsWithChildren> = ({ children }) => {
   return (
     <QueryClientProvider client={client}>
       <TooltipProvider delayDuration={200}>
@@ -29,6 +20,7 @@ const Providers: FC<PropsWithChildren<unknown>> = ({ children }) => {
             },
           }}
         />
+
         {children}
       </TooltipProvider>
     </QueryClientProvider>

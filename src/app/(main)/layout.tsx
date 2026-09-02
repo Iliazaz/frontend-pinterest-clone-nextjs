@@ -2,8 +2,10 @@ import type { Metadata } from 'next'
 import { Open_Sans, Roboto_Mono } from 'next/font/google'
 import '../globals.css'
 import { Sidebar } from '@/components/sidebar/Sidebar'
-import { Header } from '@/components/header/Header'
 import { TooltipProvider } from '@/components/ui/tooltip'
+import { Header } from '@/components/header/Header'
+import { getAccessToken, getCurrentUser } from '@/lib/server'
+import Providers from '@/lib/providers/providers'
 
 // Основной шрифт — Open_Sans (поддерживает кириллицу)
 const openSans = Open_Sans({
@@ -22,21 +24,22 @@ export const metadata: Metadata = {
   description: 'Клон pinterest написанный на express.js + Next.js',
 }
 
-export default function RootLayout({ children }: LayoutProps<'/'>) {
+export default async function RootLayout({ children }: LayoutProps<'/'>) {
+  const user = await getCurrentUser()
   return (
     <html
       lang='en'
       className={`${openSans.variable} ${robotoMono.variable} h-full antialiased`}
     >
-      <body className='min-h-full min-w-full flex justify-start'>
-        <TooltipProvider delayDuration={200}>
+      <body className='min-h-full min-w-full justify-start'>
+        <Providers>
           {' '}
-          <Sidebar />{' '}
-          <div className=' w-full flex flex-col'>
-            <Header />
+          <Sidebar /> 
+          <main className='pl-18 w-full relative flex flex-col'>
+          <Header user={user} />
             {children}
-          </div>
-        </TooltipProvider>
+          </main>
+        </Providers>
       </body>
     </html>
   )

@@ -7,3 +7,14 @@ export interface IUser {
   updatedAt: string
   createdAt: string
 }
+
+export interface IUserProfile {
+  success: boolean
+  data: IUser
+}
+
+export interface IUpdateUserDto {
+  email: string
+  nickName: string
+  avatar: string | undefined // ??????????
+}

@@ -24,6 +24,7 @@ const buttonVariants = cva(
           'hover:bg-pinterest-red-hover',
           'active:scale-[0.98]',
           'rounded-lg',
+          'cursor-pointer'
         ],
 
         // ⚪ Вторичная серая кнопка (Подписаться, Отмена)
@@ -32,6 +33,7 @@ const buttonVariants = cva(
           'hover:bg-gray-200',
           'active:scale-[0.98]',
           'rounded-full',
+          'cursor-pointer'
         ],
 
         // 🔲 Кнопка с обводкой (Нейтральные действия)

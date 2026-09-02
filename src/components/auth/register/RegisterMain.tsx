@@ -21,11 +21,8 @@ export const RegisterMain: React.FC<RegisterMainProps> = ({
   const [visiblePassword, setVisiblePassword] = React.useState<boolean>(false)
   const [avatarData, setAvatarData] = React.useState<File | null>(null)
 
-  
-
   const { onSubmit, form, isPending } = useRegister(avatarData)
 
-  
   return (
     <div
       className={cn(
@@ -82,7 +79,7 @@ export const RegisterMain: React.FC<RegisterMainProps> = ({
 
         <FormAvatarRegister
           setAvatarData={setAvatarData}
-          {...form.register('avatar',{})}
+          {...form.register('avatar', {})}
         />
 
         <div className='flex flex-col gap-2 w-full '>

@@ -8,7 +8,6 @@ import {
 } from '@/shared/types/auth.interface'
 import { axiosClassic, axiosWithAuth } from '../../api/interceptor.api'
 import { API_URL } from '@/config/api.url'
-import { removeTokenStorage, SaveTokenStorage } from './auth-tokens.service'
 
 class AuthService {
   async login(data: IAuthLoginForm) {
@@ -17,9 +16,7 @@ class AuthService {
       data,
     )
 
-    if (response.data.data.accessToken) {
-      SaveTokenStorage(response.data.data.accessToken)
-    }
+    console.log(response.data)
 
     return response.data
   }
@@ -43,22 +40,14 @@ class AuthService {
       formData,
     )
 
-    if (response.data.data.accessToken) {
-      SaveTokenStorage(response.data.data.accessToken)
-    }
-
     return response.data
   }
 
   async refresh() {
-    const response = await axiosWithAuth.post<IRefreshMethod>(
+    const response = await axiosClassic.post<IRefreshMethod>(
       API_URL.auth('refresh'),
     )
-
-    if (response.data.accessToken) {
-      SaveTokenStorage(response.data.accessToken)
-    }
-
+    
     return response.data
   }
 
@@ -70,10 +59,6 @@ class AuthService {
     const response = await axiosClassic.post<IAuthLogout>(
       API_URL.auth('logout'),
     )
-
-    if (response.data) {
-      removeTokenStorage()
-    }
 
     return response
   }

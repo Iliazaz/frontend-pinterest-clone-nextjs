@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Open_Sans, Roboto_Mono } from 'next/font/google'
 import './globals.css'
-import Providers from '@/components/auth/providers'
+import Providers from '@/lib/providers/providers'
 
 // Основной шрифт — Open_Sans (поддерживает кириллицу)
 const openSans = Open_Sans({

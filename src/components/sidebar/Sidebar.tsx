@@ -21,7 +21,7 @@ export const Sidebar: React.FC = () => {
   }
 
   return (
-    <>
+    <div className='fixed z-50 left-0 h-full flex bg-white'>
      {
       <Navigate handlePanelClick={handlePanelClick} />
      }
@@ -48,6 +48,6 @@ export const Sidebar: React.FC = () => {
           {activeOpenPanel === 'setting' && <Setting />}
         </SidePanel>
       }
-    </>
+    </div>
   )
 }
