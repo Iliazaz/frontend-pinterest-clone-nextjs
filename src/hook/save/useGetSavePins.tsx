@@ -1,23 +1,23 @@
 import { saveService } from '@/services/endpoints/save/save.serive'
 import { useInfiniteQuery } from '@tanstack/react-query'
-import React from 'react'
 
-export type IPageParams = {
-  limits: string
-  cursor: {
-    id: string
-    createdAt: string
-  }
-}
+const LIMIT = 20
 
 export const useGetSavePins = () => {
-  return useInfiniteQuery({
-    queryKey: ['save'],
-    queryFn: async ({ pageParam }) =>
-      await saveService.getSavePin(pageParam),
-    initialPageParam: undefined,
-    getNextPageParam: (lastPage) => {
-      return lastPage?.nextCursor ?? undefined
-    },
-  })
+  const { data, isPending, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useInfiniteQuery({
+      queryKey: ['save'],
+
+      queryFn: async ({ pageParam }) => {
+        return await saveService.getSavePin(LIMIT, pageParam)
+      },
+
+      initialPageParam: null,
+
+      getNextPageParam: (lastPage) => {
+        return lastPage?.data?.nextCursor ?? undefined
+      },
+    })
+
+  return { data, isPending, fetchNextPage, hasNextPage, isFetchingNextPage }
 }

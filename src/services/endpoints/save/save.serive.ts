@@ -1,8 +1,12 @@
 import { API_URL } from '@/config/api.url'
 import { axiosWithAuth } from '@/services/api/interceptor.api'
+import { ICursor, ISavePostResponse } from '@/shared/types/save.interface'
 
 class SaveService {
-  async getSavePin(limits: string, cursor: { id: string; createdAt: string }) {
+  async getSavePin(
+    limits: number,
+    cursor?: ICursor | null,
+  ): Promise<ISavePostResponse> {
     return (
       await axiosWithAuth.get(API_URL.save(`/post`), {
         params: {
@@ -17,7 +21,7 @@ class SaveService {
   }
 
   async savePost(id: string) {
-    const response = await axiosWithAuth.post(API_URL.save(`${id}/post`))
+    const response = await axiosWithAuth.post(API_URL.save(`  /${id}/post`))
 
     return response.data
   }

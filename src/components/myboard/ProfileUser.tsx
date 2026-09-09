@@ -14,7 +14,7 @@ export const ProfileUser = () => {
         href='/'
         className='grid grid-cols-2 justify-between items-center gap-2 p-3 hover:bg-gray-100 rounded-xl'
       >
-        {(data && !isPending) && (
+        {data && !isPending && (
           <div className='flex gap-5 items-center '>
             <Image
               className='rounded-full'
@@ -30,14 +30,14 @@ export const ProfileUser = () => {
           </div>
         )}
 
-        <Link href='/setting/edit-profile' className='flex justify-end'>
+        <a href='/setting/edit-profile' className='flex justify-end'>
           <Button
             variant='secondary'
             className='bg-gray-200 h-12 w-52 rounded-lg cursor-pointer text-md'
           >
             Изменить профиль
           </Button>
-        </Link>
+        </a>
       </Link>
 
       <div className='flex justify-end'>

@@ -8,6 +8,12 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'cdn.jsdelivr.net',
       },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '4200',
+        pathname: '/uploads/**',
+      },
     ],
   },
 };

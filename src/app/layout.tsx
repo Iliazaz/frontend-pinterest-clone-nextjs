@@ -26,9 +26,12 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
       lang='en'
       className={`${openSans.variable} ${robotoMono.variable} h-full antialiased`}
     >
-      <body className='min-h-full min-w-full flex justify-start'>
-        <Providers>{children}</Providers>
-      </body>
+      {/* <body className='min-h-full min-w-full flex justify-start'> */}
+      {/* <Providers> */}
+      {children}
+
+      {/* </Providers> */}
+      {/* </body> */}
     </html>
   )
 }

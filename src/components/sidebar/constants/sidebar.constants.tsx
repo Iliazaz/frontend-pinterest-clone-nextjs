@@ -6,12 +6,15 @@ import {
   SquarePlus,
 } from 'lucide-react'
 import { INavItem } from '../types/types'
+import { getCurrentUser } from '@/lib/server'
+
+// const user = await getCurrentUser()
 
 export const navigate: INavItem[] = [
   { name: 'Главная', link: '/', icon: <House />, panel: null },
   {
     name: 'Ваши доски',
-    link: '/profile',
+    link: `/myboard/`,
     icon: <LayoutPanelLeft />,
     panel: null,
   },
