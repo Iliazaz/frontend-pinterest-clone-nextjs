@@ -11,7 +11,7 @@ class DashBoardService {
   }
 
   async getAllIsPrivate(): Promise<IDashBoardResponse[]> {
-    return (await axiosWithAuth.get(API_URL.dashboard('/isPrivate'))).data
+    return (await axiosWithAuth.get(API_URL.dashboard('/isPrivate'))).data.data
   }
 
   async getById(id: string) {

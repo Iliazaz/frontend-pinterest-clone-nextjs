@@ -1,16 +1,18 @@
 'use client'
-import { NotItems } from '@/components/notItems'
-import { PinCard } from '@/components/PinCard'
-import { useGetByIdPost } from '@/hook/post/useGetByIdPost'
-import { useGetPostUserIsPrivate } from '@/hook/post/useGetPostUserIsPrivate'
-import { useSavePost } from '@/hook/save/useSavePost'
-import React from 'react'
-import NotItemImage from '../../../../public/ill.palette.spot.light.svg.webp'
 
-export const IsPrivateBoardCreatedPins: React.FC = () => {
-  const { data, isPending } = useGetPostUserIsPrivate()
-  const pins = data?.posts ? data?.posts : []
+import { NotItems } from '@/components/notItems'
+import { useGetPostIsUser } from '@/hook/post/useGetPostIsUser'
+import NotItemImage from '../../../../../public/ill.palette.spot.light.svg.webp'
+
+import React from 'react'
+import { PinCard } from '@/components/PinCard'
+import { useSavePost } from '@/hook/save/useSavePost'
+
+export const CreatedBoardPins: React.FC = () => {
+  const { data, isPending } = useGetPostIsUser()
+  const pins = data ? data : []
   const { onSavePin } = useSavePost()
+
   return (
     <div
       className={
@@ -24,7 +26,9 @@ export const IsPrivateBoardCreatedPins: React.FC = () => {
       ) : (
         pins?.map((pin) => (
           <div key={pin.id} className=''>
-            <PinCard key={pin.id} pin={pin} onSavePin={onSavePin} />
+            {pin?.posts.map((item) => (
+              <PinCard key={pin.id} pin={item} onSavePin={onSavePin} />
+            ))}
           </div>
         ))
       )}

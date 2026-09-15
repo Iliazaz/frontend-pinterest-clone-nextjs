@@ -1,22 +1,21 @@
 'use client'
 
 import React from 'react'
-import { PinBoard } from '../PinBoard'
 import { DashBordCard } from '../DashBordCard'
 import { ProfileUser } from './ProfileUser'
-import { usePinSaveScroll } from '@/hook/usePinSaveScroll'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { categoryFilters, sortFilters } from '@/constrants/filters-profile'
 import { ITypeCategory, ITypesSort } from '@/shared/types/categoy.types'
-import { SavePinsBoard } from './board/savePinsBoard'
-import { CreatedBoardPins } from './board/createdBoardPins'
-import { IsPrivateBoardCreatedPins } from './board/isPrivateBoardCreatedPins'
-import { useGetAll } from '@/hook/dashboard/useGetAllDashBoard'
+import { SavePinsBoard } from './boards/pin/savePinsBoard'
+import { CreatedBoardPins } from './boards/pin/createdBoardPins'
+import { IsPrivateBoardCreatedPins } from './boards/pin/isPrivateBoardCreatedPins'
+import { useGetAllDashBoard } from '@/hook/dashboard/useGetAllDashBoard'
+import { IsBoardProfile } from './IsBoardProfile'
+import { IsBoardPinsProfile } from './IsBoardPinsProfile'
 
 export const MyBoardMain: React.FC = () => {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const { data, isPending } = useGetAll()
 
   const activeSort = searchParams.get('sort') ?? 'saved'
   const activeCategory = searchParams.get('category') ?? 'pins'
@@ -82,90 +81,10 @@ export const MyBoardMain: React.FC = () => {
       </div>
 
       {activeCategory === 'pins' ? (
-        // {/* Часть с пинами */}
-        <div className='flex flex-col gap-5 mx-5 my-12'>
-          {/* Рекомендованные доски */}
-          <div className=''>
-            <h2 className='font-bold text-xl mb-5'>Рекомендуемые доски</h2>
-
-            {/* Карточка доски */}
-
-            {data?.map((items) => (
-              <DashBordCard
-                key={items.id}
-                name={items.name}
-                imageUrl={items.posts[0].imageURL}
-              />
-            ))}
-          </div>
-
-          {/* Пины профиля пользователя */}
-          <div className=''>
-            <h2 className='font-bold text-xl mb-5'>Ваши сохраненные пины</h2>
-            {/* Доска с пинами */}
-            {activeSort === 'saved' ? (
-              <SavePinsBoard />
-            ) : activeSort === 'mine' ? (
-              <CreatedBoardPins />
-            ) : (
-              <IsPrivateBoardCreatedPins />
-            )}
-            {/* <PinBoard pins={pins} loadMoreRef={loadMoreRef} /> */}
-          </div>
-        </div>
+        <IsBoardPinsProfile activeSort={activeSort} />
       ) : (
         // {/* Часть с досками */}
-        <div className='flex flex-col gap-5 mx-5 my-12'>
-          {/* Рекомендованные доски */}
-          <div className=''>
-            {/* Карточка доски */}
-            {data?.map((items) => (
-              <DashBordCard
-                key={items.id}
-                name={items.name}
-                imageUrl={items.posts[0].imageURL}
-              />
-            ))}
-          </div>
-
-          <hr className='bg-secondary' />
-          <div className='mb-4'>
-            <div className='mb-3 block pt-10 pb-4'>
-              <h2 className='font-bold text-xl mb-3'>
-                Следите за тем, что вас вдохновляет
-              </h2>
-              <span className='text-secondary-text mb-8'>
-                Доски позволяют упорядочивать сохраненные пины в коллекции.
-                Начните с предложенных вариантов или создайте свою коллекцию.
-              </span>
-            </div>
-
-            {/* Карточка доски */}
-            {data?.map((items) => (
-              <div className='mx-12'>
-                <DashBordCard
-                  key={items.id}
-                  name={items.name}
-                  imageUrl={items.posts[0].imageURL}
-                />
-              </div>
-            ))}
-          </div>
-
-          {/* Доски профиля пользователя */}
-          <div className=''>
-            <h2 className='font-bold text-xl mb-5'>Неотсортированные идеи</h2>
-
-            {/* Карточка доски */}
-            {data?.map((items) => (
-              <DashBordCard
-                key={items.id}
-                name={items.name}
-                imageUrl={items.posts[0].imageURL}
-              />
-            ))}
-          </div>
-        </div>
+        <IsBoardProfile activeSort={activeSort} />
       )}
     </div>
   )

@@ -4,7 +4,8 @@ import { NotItems } from '@/components/notItems'
 import { PinCard } from '@/components/PinCard'
 import { usePinSaveScroll } from '@/hook/usePinSaveScroll'
 import React from 'react'
-import NotItemImage from '../../../../public/ill.palette.spot.light.svg.webp'
+import NotItemImage from '../../../../../public/ill.palette.spot.light.svg.webp'
+
 import { useSavePost } from '@/hook/save/useSavePost'
 import { PinBoard } from '@/components/PinBoard'
 

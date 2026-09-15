@@ -2,7 +2,7 @@ import { dashBoardService } from '@/services/endpoints/dashboard/dashboard.servi
 import { useQuery } from '@tanstack/react-query'
 import React from 'react'
 
-export const useGetAll = () => {
+export const useGetAllDashBoard = () => {
   const {data, isPending} = useQuery({
     queryKey: ['dashboard'],
     queryFn: async () => {

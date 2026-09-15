@@ -1,18 +1,16 @@
 'use client'
-
 import { NotItems } from '@/components/notItems'
-import { useGetPostIsUser } from '@/hook/post/useGetPostIsUser'
-import NotItemImage from '../../../../public/ill.palette.spot.light.svg.webp'
-
-import React from 'react'
 import { PinCard } from '@/components/PinCard'
+import { useGetByIdPost } from '@/hook/post/useGetByIdPost'
+import { useGetPostUserIsPrivate } from '@/hook/post/useGetPostUserIsPrivate'
 import { useSavePost } from '@/hook/save/useSavePost'
+import React from 'react'
+import NotItemImage from '../../../../../public/ill.palette.spot.light.svg.webp'
 
-export const CreatedBoardPins: React.FC = () => {
-  const { data, isPending } = useGetPostIsUser()
-  const pins = data ? data : []
+export const IsPrivateBoardCreatedPins: React.FC = () => {
+  const { data, isPending } = useGetPostUserIsPrivate()
+  const pins = data?.posts ? data?.posts : []
   const { onSavePin } = useSavePost()
-
   return (
     <div
       className={
@@ -22,13 +20,11 @@ export const CreatedBoardPins: React.FC = () => {
       }
     >
       {pins === null || pins === undefined || pins.length === 0 ? (
-        <NotItems image={NotItemImage} textButton='Создать пин' />
+        <NotItems image={NotItemImage} textButton='Создать доску' />
       ) : (
         pins?.map((pin) => (
           <div key={pin.id} className=''>
-            {pin?.posts.map((item) => (
-              <PinCard key={pin.id} pin={item} onSavePin={onSavePin} />
-            ))}
+            <PinCard key={pin.id} pin={pin} onSavePin={onSavePin} />
           </div>
         ))
       )}
