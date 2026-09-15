@@ -10,5 +10,5 @@ export const useGetPostAllUser = () => {
     },
   })
 
-  return { data, isPending }
+  return { postAllUser: data, isPendingAllUser: isPending }
 }

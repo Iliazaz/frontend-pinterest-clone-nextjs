@@ -15,7 +15,6 @@ interface IPinsBoardProps {
 
 export const PinBoard: React.FC<IPinsBoardProps> = ({ pins, loadMoreRef }) => {
   const { onSavePin, isPending } = useSavePost()
-  console.log(pins)
   return (
     <div
       ref={loadMoreRef}

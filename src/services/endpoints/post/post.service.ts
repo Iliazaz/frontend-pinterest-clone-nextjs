@@ -2,6 +2,7 @@ import { API_URL } from '@/config/api.url'
 import { axiosClassic, axiosWithAuth } from '@/services/api/interceptor.api'
 import {
   ICreatePostDto,
+  IPostResponse,
   IUploadPostTextDto,
 } from '@/shared/types/post.interface'
 
@@ -42,12 +43,15 @@ class PostService {
     return (await axiosWithAuth.get(API_URL.post('/all'))).data
   }
 
-  async getPostIsUser() {
-    return (await axiosWithAuth.get(API_URL.post('/user'))).data
+  async getPostIsUser(): Promise<IPostResponse[]> {
+    const response = (await axiosWithAuth.get(API_URL.post('/user'))).data
+    return response.data
   }
 
-  async getPostIsUserPrivate() {
-    return (await axiosWithAuth.get(API_URL.post('/user/isPrivate'))).data
+  async getPostIsUserPrivate(): Promise<IPostResponse> {
+    const response = (await axiosWithAuth.get(API_URL.post('/user/isPrivate')))
+      .data
+    return response.data
   }
 
   async getByIdPost(id: string) {

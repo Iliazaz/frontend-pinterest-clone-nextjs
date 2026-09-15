@@ -6,7 +6,7 @@ export const useGetPostUserIsPrivate = () => {
   const { data, isPending } = useQuery({
     queryKey: ['post'],
     queryFn: async () => {
-      await postService.getPostIsUserPrivate()
+      return await postService.getPostIsUserPrivate()
     },
   })
 

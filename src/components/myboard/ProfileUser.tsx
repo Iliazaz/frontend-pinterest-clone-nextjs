@@ -29,15 +29,15 @@ export const ProfileUser = () => {
             </div>
           </div>
         )}
-
-        <a href='/setting/edit-profile' className='flex justify-end'>
+{/* href='/setting/edit-profile' */}
+        <div  className='flex justify-end'>
           <Button
             variant='secondary'
             className='bg-gray-200 h-12 w-52 rounded-lg cursor-pointer text-md'
           >
             Изменить профиль
           </Button>
-        </a>
+        </div>
       </Link>
 
       <div className='flex justify-end'>

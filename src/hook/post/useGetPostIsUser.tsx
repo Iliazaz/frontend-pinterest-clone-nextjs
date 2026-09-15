@@ -6,7 +6,7 @@ export const useGetPostIsUser = () => {
   const { data, isPending } = useQuery({
     queryKey: ['post'],
     queryFn: async () => {
-      await postService.getPostIsUser()
+      return await postService.getPostIsUser()
     },
   })
 
