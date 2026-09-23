@@ -21,11 +21,14 @@ export const PinCard: React.FC<IPinCardProps> = ({ pin, onSavePin }) => {
   }
 
   return (
-    <div className='group relative rounded-xl '>
-        <img src={pin.imageURL} alt={pin.id} className='w-full rounded-xl cursor-pointer ' />
+    <Link href={`/pin/${pin.id}`} className='group relative rounded-xl '>
+      <img
+        src={pin.imageURL}
+        alt={pin.id}
+        className='w-full rounded-xl cursor-pointer '
+      />
       {/* При наведении */}
       <div className='hidden group-hover:block absolute top-0 w-full rounded-xl h-full group-hover:bg-black/10'>
-
         {!isSaved ? (
           <div
             onClick={() => handleSaved(pin.id)}
@@ -56,6 +59,6 @@ export const PinCard: React.FC<IPinCardProps> = ({ pin, onSavePin }) => {
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   )
 }

@@ -5,8 +5,9 @@ import { useGetAllBoardIsPrivate } from '@/hook/dashboard/useGetAllBoardIsPrivat
 import React from 'react'
 import NotItemImage from '../../../../../public/ill.pinboard.spot.light.svg.webp'
 import { NotItems } from '@/components/notItems'
+import { DashBoardCardProfile } from '../DashBoardCardProfile'
 
-export const IsPrivateBoard = () => {
+export const IsPrivateBoard: React.FC = () => {
   const { data, isPending } = useGetAllBoardIsPrivate()
   return (
     <div className=''>
@@ -18,7 +19,7 @@ export const IsPrivateBoard = () => {
         </div>
       ) : (
         data?.map((items) => (
-          <DashBordCard
+          <DashBoardCardProfile
             key={items.id}
             name={items.name}
             imageUrl={items.posts[0].imageURL}

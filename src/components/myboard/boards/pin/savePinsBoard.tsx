@@ -15,7 +15,7 @@ export const SavePinsBoard = () => {
 
   return (
     <div>
-      <PinBoard pins={pins} loadMoreRef={loadMoreRef} />
+      <PinBoard pins={pins} loadMoreRef={loadMoreRef}/>
     </div>
   )
 }

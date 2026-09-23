@@ -2,6 +2,7 @@ import { API_URL } from '@/config/api.url'
 import { axiosClassic, axiosWithAuth } from '@/services/api/interceptor.api'
 import {
   ICreatePostDto,
+  IPostByIdResponse,
   IPostResponse,
   IUploadPostTextDto,
 } from '@/shared/types/post.interface'
@@ -54,8 +55,8 @@ class PostService {
     return response.data
   }
 
-  async getByIdPost(id: string) {
-    return (await axiosWithAuth.get(API_URL.post(`/byId/${id}`))).data
+  async getByIdPost(id: string): Promise<IPostByIdResponse> {
+    return (await axiosWithAuth.get(API_URL.post(`/byId/${id}`))).data.data
   }
 
   async likePost(id: string) {

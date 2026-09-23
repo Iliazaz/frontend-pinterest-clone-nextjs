@@ -23,6 +23,25 @@ export interface IUploadPostTextDto {
 }
 
 export interface IPostResponse {
+  id: string
+  posts: IPost[]
+}
+
+export interface IPostByIdResponse {
+  id: string
+  title: string
+  description: string
+  imageURL: string
+  createdAt: string
+  user: {
     id: string
-    posts: IPost[]
+    nickName: string
+    avatar: string
+  }
+  comments: []
+  _count: {
+    likes: number
+    comments: number
+    saves: number
+  }
 }

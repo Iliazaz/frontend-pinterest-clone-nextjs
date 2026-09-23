@@ -6,7 +6,7 @@ export const useGetByIdPost = (id: string) => {
   const { data, isPending } = useQuery({
     queryKey: ['post'],
     queryFn: async () => {
-      await postService.getByIdPost(id)
+      return await postService.getByIdPost(id)
     },
     enabled: !!id,
   })

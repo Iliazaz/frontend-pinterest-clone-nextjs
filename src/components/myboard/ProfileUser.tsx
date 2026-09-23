@@ -6,7 +6,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useProfile } from '@/hook/user/useProfile'
 
-export const ProfileUser = () => {
+export const ProfileUser: React.FC = () => {
   const { data, isPending } = useProfile()
   return (
     <div className='flex flex-col justify-between gap-10'>
@@ -29,8 +29,8 @@ export const ProfileUser = () => {
             </div>
           </div>
         )}
-{/* href='/setting/edit-profile' */}
-        <div  className='flex justify-end'>
+        {/* href='/setting/edit-profile' */}
+        <div className='flex justify-end'>
           <Button
             variant='secondary'
             className='bg-gray-200 h-12 w-52 rounded-lg cursor-pointer text-md'

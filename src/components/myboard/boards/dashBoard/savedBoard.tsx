@@ -1,11 +1,11 @@
 'use client'
 import NotItemImage from '../../../../../public/ill.pinboard.spot.light.svg.webp'
-import { DashBordCard } from '@/components/DashBordCard'
 import { NotItems } from '@/components/notItems'
 import { useGetAllDashBoard } from '@/hook/dashboard/useGetAllDashBoard'
 import React from 'react'
+import { DashBoardCardProfile } from '../DashBoardCardProfile'
 
-export const SavedBoard = () => {
+export const SavedBoard: React.FC = () => {
   const { data, isPending } = useGetAllDashBoard()
 
   return (
@@ -18,7 +18,7 @@ export const SavedBoard = () => {
         </div>
       ) : (
         data?.map((items) => (
-          <DashBordCard
+          <DashBoardCardProfile
             key={items.id}
             name={items.name}
             imageUrl={items.posts[0].imageURL}
