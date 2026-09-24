@@ -1,10 +1,15 @@
+import { cn } from '@/lib/utils'
 import { ChevronDown } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
 
-export const CommentsMain: React.FC = () => {
+interface CommentsMainProps {
+  className?: string
+}
+
+export const CommentsMain: React.FC<CommentsMainProps> = ({ className }) => {
   return (
-    <div className='flex flex-col py-3 gap-3'>
+    <div className={cn('flex flex-col py-3 gap-3', className)}>
       <div className='flex items-center justify-between'>
         <span className='font-bold'>1 комментарий</span>
         <ChevronDown className='text-secondary-text w-8 h-8 ' />

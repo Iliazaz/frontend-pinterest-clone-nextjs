@@ -8,4 +8,6 @@ export const API_URL = {
   dashboard: (url = '') => `/dashboard${url}`,
   post: (url = '') => `/post${url}`,
   pin: (url = '') => `/pin${url}`,
+  comments: (url = '') => `/comments${url}`,
+
 }

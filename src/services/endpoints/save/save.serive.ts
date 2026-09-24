@@ -21,7 +21,7 @@ class SaveService {
   }
 
   async savePost(id: string) {
-    const response = await axiosWithAuth.post(API_URL.save(`  /${id}/post`))
+    const response = await axiosWithAuth.post(API_URL.save(`/${id}/post`))
 
     return response.data
   }

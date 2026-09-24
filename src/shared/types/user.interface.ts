@@ -13,6 +13,12 @@ export interface IUserProfile {
   data: IUser
 }
 
+export interface IUserComments {
+  id: true
+  avatar: true
+  nickName: true
+}
+
 export interface IUpdateUserDto {
   email: string
   nickName: string
