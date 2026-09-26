@@ -6,7 +6,7 @@ export const FormComments = () => {
   return (
     <div className='relative'>
       <Input
-        className='p-6 rounded-full text-secondary-text text-xl '
+        className='p-6 rounded-full test-black text-xl '
         placeholder='Добавить комментарий'
       />
 

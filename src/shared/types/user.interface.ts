@@ -14,9 +14,9 @@ export interface IUserProfile {
 }
 
 export interface IUserComments {
-  id: true
-  avatar: true
-  nickName: true
+  id: string
+  avatar: string
+  nickName: string
 }
 
 export interface IUpdateUserDto {

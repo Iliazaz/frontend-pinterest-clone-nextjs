@@ -18,7 +18,7 @@ export const Author: React.FC<AuthorProps> = ({
   return (
     <div
       className={cn(
-        'flex gap-2 items-center text-xs px-3 pt-3 pb-5',
+        'flex gap-2 items-center text-sm ',
         className,
       )}
     >

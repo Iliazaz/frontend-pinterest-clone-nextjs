@@ -29,6 +29,8 @@ export const useGetAllComments = (postId: string) => {
       },
     })
 
+    console.log(data)
+
   return {
     data,
     isPending,

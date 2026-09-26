@@ -1,15 +1,13 @@
-'use client'
-
 import React from 'react'
-import { useFeedLite } from './feed/useFeed'
+import { useGetAllComments } from './comments/useGetAllComments'
 
-export const useFeedPinScroll = () => {
+export const useCommentsScroll = (id: string) => {
   const loadMoreRef = React.useRef<HTMLDivElement | null>(null)
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isPending } =
-    useFeedLite()
+    useGetAllComments(id)
 
-  const pins = data?.pages.flatMap((page) => page.data.posts ?? []) ?? []
+  const comments = data?.pages.flatMap((page) => page?.data.comments) ?? []
 
   React.useEffect(() => {
     const el = loadMoreRef?.current
@@ -36,9 +34,9 @@ export const useFeedPinScroll = () => {
     observer.observe(el)
 
     return () => {
-      observer.disconnect()
+      observer.disconnect
     }
-  }, [fetchNextPage, isFetchingNextPage, hasNextPage])
+  }, [fetchNextPage, hasNextPage, isFetchingNextPage])
 
-  return { pins, isPending, loadMoreRef }
+  return { comments, isPending, loadMoreRef }
 }
