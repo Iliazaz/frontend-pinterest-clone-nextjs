@@ -1,16 +1,24 @@
 import { commentService } from '@/services/endpoints/comments/comments.service'
-import { ICommentsData } from '@/shared/types/comments.interface'
+import {
+  ICommentsData,
+  ICreateCommentsResponse,
+} from '@/shared/types/comments.interface'
 import { useMutation } from '@tanstack/react-query'
 import React from 'react'
+import { SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 
-export const useCreateComments = (parentCommentId: string) => {
+export const useCreateComments = (postId: string) => {
+  const form = useForm<ICommentsData>({
+    mode: 'onChange',
+  })
   const { mutate, isPending, data } = useMutation({
     mutationKey: ['comments'],
     mutationFn: async (data: ICommentsData) => {
-      return await commentService.createComments(parentCommentId, data)
+      return await commentService.createComments(postId, data)
     },
     onSuccess: () => {
+      form.reset()
       toast.success('Коммент оставлен')
     },
     onError: (error: any) => {
@@ -28,9 +36,9 @@ export const useCreateComments = (parentCommentId: string) => {
     },
   })
 
-  const onCreateComments = (data: ICommentsData) => {
+  const onCreateComments: SubmitHandler<ICommentsData> = (data) => {
     mutate(data)
   }
 
-  return { isPending, onCreateComments, data }
+  return { isPending, onCreateComments, data, form }
 }

@@ -49,8 +49,11 @@ export interface ICommentsGetAll {
 }
 
 export interface IRepliesResponse {
-  id: true
-  text: true
-  createdAt: true
-  user: IUserComments
+  success: boolean
+  data: {
+    comments: IReplies[]
+    hasNextPage: boolean
+    offset: number
+    limit: number
+  }
 }

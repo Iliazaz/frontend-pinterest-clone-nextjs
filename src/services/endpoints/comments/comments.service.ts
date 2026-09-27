@@ -11,13 +11,13 @@ import { ICursor } from '@/shared/types/save.interface'
 
 class CommentsService {
   async createComments(
-    parentCommentId: string,
+    postId: string,
     data: ICommentsData,
   ): Promise<ICreateCommentsResponse> {
-    const response = await axiosWithAuth.post(API_URL.comments('/'), {
+    const response = await axiosWithAuth.post(
+      API_URL.comments(`/${postId}`),
       data,
-      parentCommentId,
-    })
+    )
 
     return response.data
   }
@@ -28,9 +28,8 @@ class CommentsService {
     cursor?: ICursor | null,
   ): Promise<ICommentsGetAll> {
     return (
-      await axiosClassic.get(API_URL.comments(`/all`), {
+      await axiosClassic.get(API_URL.comments(`/all/${postId}`), {
         params: {
-          postId,
           limit: limits,
           ...(cursor && {
             id: cursor.id,
@@ -45,9 +44,9 @@ class CommentsService {
     parentCommentId: string,
     limits: number,
     offset: number,
-  ): Promise<IRepliesResponse[]> {
+  ): Promise<IRepliesResponse> {
     return (
-      await axiosClassic.get(API_URL.comments('/'), {
+      await axiosClassic.get(API_URL.comments(`/${parentCommentId}`), {
         params: {
           limits: limits,
           offset: offset,

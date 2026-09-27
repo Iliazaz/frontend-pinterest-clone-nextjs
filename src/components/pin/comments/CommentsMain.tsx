@@ -3,7 +3,6 @@
 import { cn } from '@/lib/utils'
 import { ChevronDown, ChevronUp } from 'lucide-react'
 import React from 'react'
-import { CommentsCard } from '../../CommentsCard'
 import { CommentCardList } from './CommentCartList'
 
 interface CommentsMainProps {
@@ -20,7 +19,7 @@ export const CommentsMain: React.FC<CommentsMainProps> = ({
   const [openComments, setOpenComments] = React.useState<boolean>(false)
 
   return (
-    <div className={cn('flex flex-col py-3 gap-3', className)}>
+    <div className={cn('flex flex-col py-3 px-3 gap-3', className)}>
       <div className='flex items-center justify-between'>
         <span className='font-bold'>{commentsCount} комментарий</span>
 

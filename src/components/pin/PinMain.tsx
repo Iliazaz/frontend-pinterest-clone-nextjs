@@ -45,10 +45,16 @@ export const PinMain: React.FC<PinMainProps> = ({ id, className }) => {
                       nickName={data.user.nickName}
                     />
 
-                    <h2 className='font-bold text-2xl pt-2'>{data.title}</h2>
+                    <h2
+                      className={
+                        !data.title ? 'hidden' : 'font-bold text-2xl pt-2'
+                      }
+                    >
+                      {data.title}
+                    </h2>
                   </div>
 
-                  <div className=''>
+                  <div className={!data.description ? 'hidden' : ''}>
                     <p className='font-bold pb-3'>Описание</p>
                     <span className='text-secondary-text'>
                       {data.description}
@@ -62,7 +68,8 @@ export const PinMain: React.FC<PinMainProps> = ({ id, className }) => {
                   commentsCount={data._count.comments}
                 />
               </div>
-              <FormComments />
+              
+              <FormComments postId={id}/>
             </div>
           </div>
         </div>

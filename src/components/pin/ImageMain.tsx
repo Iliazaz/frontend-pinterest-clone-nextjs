@@ -25,7 +25,7 @@ export const ImageMain: React.FC<ImageMainProps> = ({
           className,
         )}
       >
-        <img className='w-full h-full rounded-xl ' src={imageUrl} alt='' />
+        <img className='w-full h-full  ' src={imageUrl} alt='' />
         <div className=' absolute right-2 bottom-2 gap-3 flex flex-col justify-end items-end  '>
           <div className='group min-w-12 min-h-12 rounded-lg gap-3 p-3 flex items-center justify-center opacity-70 bg-white '>
             <span className='hidden group-hover:block'>
