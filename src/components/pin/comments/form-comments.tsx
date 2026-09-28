@@ -1,10 +1,10 @@
 'use client'
 
 import React from 'react'
-import { Input } from './input'
 import { SendHorizontal } from 'lucide-react'
 import { useCreateComments } from '@/hook/comments/useCreateComments'
-import { Button } from './button'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 
 interface FormCommentsProps {
   postId: string

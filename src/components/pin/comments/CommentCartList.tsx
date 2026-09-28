@@ -5,6 +5,7 @@ import { useCommentsScroll } from '@/hook/useCommentsScroll'
 import { ReplaceCommentsCard } from './ReplaceCommentsCard'
 import { useReplaceCommentsScroll } from '@/hook/useReplaceCommentsScroll'
 import { IComments } from '@/shared/types/comments.interface'
+import { RepliesCommentsList } from './RepliesCommentsList'
 
 interface CommentCardListProps {
   postId: string
@@ -17,87 +18,38 @@ export const CommentCardList: React.FC<CommentCardListProps> = ({
   openComments,
   className,
 }) => {
-  const [commentsData, setCommentsData] = React.useState<IComments[]>([])
-
-  const [openReplace, setOpenReplace] = React.useState<boolean>(false)
   const { comments, isPending, loadMoreRef } = useCommentsScroll(postId)
 
-  React.useEffect(() => {
-    setCommentsData(comments)
-  }, [openComments])
-
-  console.log("comments: " + comments)
-  console.log("commentsData: " + commentsData)
 
   return (
     <div
       className={
         comments.length < 0
           ? 'hidden'
-          : `min-h-36 max-h-64 gap-8 ${
+          : `min-h-42 max-h-56   gap-8 mb-8 ${
               openComments
                 ? 'flex flex-col  overflow-y-scroll scrollbar-none'
                 : 'flex flex-col'
             }`
       }
     >
-      {commentsData.length > 0 && openComments ? (
-        commentsData.map((comment) => (
+      {comments.length > 0 && openComments ? (
+        comments.map((comment) => (
           <div
             key={comment.id}
             ref={loadMoreRef}
             className='px-2 flex flex-col gap-2'
           >
-            <CommentsCard data={comment} />
-            <div
-              onClick={() => setOpenReplace(!openReplace)}
-              className='flex gap-4 px-4 items-center text-xs font-bold text-secondary-text cursor-pointer'
-            >
-              <hr className='w-5 mt-0.5 border-0.5 rounded-xl border-secondary-text' />
-              {openReplace ? (
-                <span>Скрыть ответы</span>
-              ) : (
-                <span>Просмотреть {comment._count.replies} ответа</span>
-              )}
-            </div>{' '}
-            <div
-              className={`min-h-24 max-h-42 gap-8 px-12 pt-3 ${
-                openReplace
-                  ? 'flex flex-col  overflow-y-scroll  scrollbar-none'
-                  : 'hidden'
-              }`}
-            >
-              <ReplaceCommentsCard id={comment.id} />
-            </div>
+            <CommentsCard postId={postId} comments={comment} />
+            <RepliesCommentsList comment={comment} />
           </div>
         ))
       ) : (
         <div ref={loadMoreRef} className='px-2 flex flex-col gap-2'>
-          {comments[0] && <CommentsCard data={comments[0]} />}
-          <div
-            onClick={() => setOpenReplace(!openReplace)}
-            className='flex gap-4 px-4 items-center text-xs font-bold text-secondary-text cursor-pointer'
-          >
-            <hr className='w-5 mt-0.5 border-0.5 rounded-xl border-secondary-text' />
-            {openReplace ? (
-              <span>Скрыть ответы</span>
-            ) : (
-              <span>Просмотреть 4 ответа</span>
-            )}
-          </div>{' '}
-          <div
-            className={`min-h-24 max-h-42 gap-8 px-12 pt-3 ${
-              openReplace
-                ? 'flex flex-col  overflow-y-scroll  scrollbar-none'
-                : 'hidden'
-            }`}
-          >
-            {comments.length > 0 ? (
-              <ReplaceCommentsCard id={commentsData[0].id} />
-            ) : (
-              <></>
-            )}
-          </div>
+          {comments[0] && (
+            <CommentsCard postId={postId} comments={comments[0]} />
+          )}
+          <RepliesCommentsList comment={comments[0]}/>
         </div>
       )}
     </div>

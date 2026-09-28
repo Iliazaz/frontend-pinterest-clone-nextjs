@@ -4,10 +4,10 @@ import React from 'react'
 import { toast } from 'sonner'
 
 export const useLikePost = () => {
-  const { mutate, isPending } = useMutation({
+  const { mutate, isPending, data } = useMutation({
     mutationKey: ['like'],
     mutationFn: async (postId: string) => {
-      await postService.likePost(postId)
+      return await postService.likePost(postId)
     },
     onError: (error: any) => {
       if (
@@ -30,6 +30,6 @@ export const useLikePost = () => {
   const onLikePost = (postId: string) => {
     mutate(postId)
   }
-
-  return { onLikePost, isPending }
+  console.log(data)
+  return { onLikePost, isPending , data}
 }

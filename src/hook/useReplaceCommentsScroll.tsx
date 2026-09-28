@@ -6,7 +6,7 @@ export const useReplaceCommentsScroll = (id: string) => {
     useGetReplaceComments(id)
   console.log(data)
 
-  const replies = data?.pages.flatMap((page) => page.data.comments) ?? []
+  const replies = data?.pages.flatMap((page) => page.data.replies) ?? []
   console.log(replies)
 
   return { replies }

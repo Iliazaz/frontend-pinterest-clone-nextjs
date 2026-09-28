@@ -5,9 +5,9 @@ import { ImageMain } from './ImageMain'
 import { ButtonPins } from './ButtonPins'
 import { Author } from './Author'
 import { CommentsMain } from './comments/CommentsMain'
-import { FormComments } from '../ui/form-comments'
 import { cn } from '@/lib/utils'
 import { useGetByIdPost } from '@/hook/post/useGetByIdPost'
+import { FormComments } from './comments/form-comments'
 
 interface PinMainProps {
   id: string
@@ -15,66 +15,91 @@ interface PinMainProps {
 }
 
 export const PinMain: React.FC<PinMainProps> = ({ id, className }) => {
+  const [liked, setLiked] = React.useState(false)
+
   const { data, isPending } = useGetByIdPost(id)
+
+  React.useEffect(() => {
+    const savedLiked = localStorage.getItem(`liked-${id}`)
+
+    setLiked(savedLiked === 'true')
+  }, [id])
+
+
+  // ПОКА ВОТ ТАК ЧЕРЕЗ LOCALSTORAGE НО ПОТОМ НАДО ИСПРАВИТЬ И СДЕЛАТЬ ЧЕРЕЗ BACKEND
+  const handleSetLiked: React.Dispatch<React.SetStateAction<boolean>> = (
+    value,
+  ) => {
+    setLiked((prev) => {
+      const next = typeof value === 'function' ? value(prev) : value
+
+      localStorage.setItem(`liked-${id}`, String(next))
+
+      return next
+    })
+  }
+
+  if (isPending || !data) {
+    return null
+  }
 
   return (
     <div>
-      {/* Все и вся про открытый пин */}
-      {data && (
-        <div
-          className={cn(
-            'relative flex justify-between items-center border border-secondary ',
-            className,
-          )}
-        >
-          <div className='relative flex justify-between  border border-secondary-text rounded-3xl w-full'>
-            <div className='flex items-center justify-end'>
-              <ImageMain imageUrl={data.imageURL} />
-            </div>
-            <div className='flex flex-col justify-between  w-full  px-4 py-5'>
-              <div className=''>
-                {/* Лайки комментарии и т.д */}
+      <div
+        className={cn(
+          'relative flex justify-between items-center border border-secondary rounded-3xl',
+          className,
+        )}
+      >
+        <div className='relative flex justify-between border border-secondary-text rounded-3xl w-full'>
+          <div className='flex items-center justify-end'>
+            <ImageMain imageUrl={data.imageURL} />
+          </div>
 
-                <ButtonPins likeCount={data._count.likes} />
-                {/* Автор */}
-                <div className='flex flex-col gap-3 px-3 pt-3 '>
-                  <div>
-                    <Author
-                      id={data.user.id}
-                      avatar={data.user.avatar}
-                      nickName={data.user.nickName}
-                    />
+          <div className='flex flex-col justify-between w-full px-4 py-5'>
+            <div>
+              <ButtonPins
+                postId={id}
+                liked={liked}
+                setLiked={handleSetLiked}
+                likeCount={data._count.likes}
+              />
 
-                    <h2
-                      className={
-                        !data.title ? 'hidden' : 'font-bold text-2xl pt-2'
-                      }
-                    >
-                      {data.title}
-                    </h2>
-                  </div>
+              <div className='flex flex-col gap-3 px-3 pt-3'>
+                <div>
+                  <Author
+                    id={data.user.id}
+                    avatar={data.user.avatar}
+                    nickName={data.user.nickName}
+                  />
 
-                  <div className={!data.description ? 'hidden' : ''}>
-                    <p className='font-bold pb-3'>Описание</p>
-                    <span className='text-secondary-text'>
-                      {data.description}
-                    </span>
-                  </div>
-                  <hr />
+                  <h2
+                    className={
+                      !data.title ? 'hidden' : 'font-bold text-2xl pt-2'
+                    }
+                  >
+                    {data.title}
+                  </h2>
                 </div>
-                {/* Комментарии */}
-                <CommentsMain
-                  postId={id}
-                  commentsCount={data._count.comments}
-                />
+
+                <div className={!data.description ? 'hidden' : ''}>
+                  <p className='font-bold pb-3'>Описание</p>
+
+                  <span className='text-secondary-text'>
+                    {data.description}
+                  </span>
+                </div>
+
+                <hr />
               </div>
-              
-              <FormComments postId={id}/>
+
+              <CommentsMain postId={id} commentsCount={data._count.comments} />
             </div>
+
+            <FormComments postId={id} />
           </div>
         </div>
-      )}
-      {/* Подборка похожих пинов */}
+      </div>
     </div>
   )
 }

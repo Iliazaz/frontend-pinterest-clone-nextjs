@@ -4,12 +4,12 @@ import { toast } from 'sonner'
 
 export const useDeleteComment = () => {
   const { mutate, data, isPending } = useMutation({
-    mutationKey: ['comments'],
+    mutationKey: ['comments', 'delete'],
     mutationFn: async (id: string) => {
       return await commentService.deletePostComment(id)
     },
     onSuccess: () => {
-      toast.success('Комментарий отредактирован')
+      toast.success('Комментарий удален')
     },
     onError: (error: any) => {
       if (

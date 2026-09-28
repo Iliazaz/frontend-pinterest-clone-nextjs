@@ -7,7 +7,7 @@ const LIMIT = 20
 export const useGetReplaceComments = (parentCommentId: string) => {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
     useInfiniteQuery({
-      queryKey: ['comments'],
+      queryKey: ['comments', parentCommentId],
       initialPageParam: 0,
       queryFn: async ({ pageParam }) => {
         return await commentService.getCommentsReplies(

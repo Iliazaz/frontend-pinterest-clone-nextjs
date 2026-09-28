@@ -51,7 +51,7 @@ export interface ICommentsGetAll {
 export interface IRepliesResponse {
   success: boolean
   data: {
-    comments: IReplies[]
+    replies: IReplies[]
     hasNextPage: boolean
     offset: number
     limit: number

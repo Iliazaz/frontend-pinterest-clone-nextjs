@@ -65,7 +65,7 @@ class CommentsService {
   }
 
   async deletePostComment(id: string) {
-    return (await axiosWithAuth.patch(API_URL.comments(`/${id}/delete`))).data
+    return (await axiosWithAuth.delete(API_URL.comments(`/${id}/delete`))).data
   }
 }
 

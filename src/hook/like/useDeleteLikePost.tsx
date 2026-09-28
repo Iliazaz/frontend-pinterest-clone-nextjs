@@ -5,7 +5,7 @@ import { toast } from 'sonner'
 
 export const useLikeDeletePost = () => {
   const { mutate, isPending } = useMutation({
-    mutationKey: ['like'],
+    mutationKey: ['post', 'like'],
     mutationFn: async (postId: string) => {
       await postService.likeDeletePost(postId)
     },
@@ -27,9 +27,9 @@ export const useLikeDeletePost = () => {
     },
   })
 
-  const onLikePost = (postId: string) => {
+  const onLikeDeletePost = (postId: string) => {
     mutate(postId)
   }
 
-  return { onLikePost, isPending }
+  return { onLikeDeletePost, isPending }
 }

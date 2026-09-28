@@ -3,13 +3,13 @@ import { useQuery } from '@tanstack/react-query'
 import React from 'react'
 
 export const useGetByIdPost = (id: string) => {
-  const { data, isPending } = useQuery({
-    queryKey: ['post'],
+  const { data, isPending, refetch } = useQuery({
+    queryKey: ['post', id],
     queryFn: async () => {
       return await postService.getByIdPost(id)
     },
     enabled: !!id,
   })
 
-  return { data, isPending }
+  return { data, isPending, refetch }
 }
