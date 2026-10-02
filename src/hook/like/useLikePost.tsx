@@ -30,6 +30,5 @@ export const useLikePost = () => {
   const onLikePost = (postId: string) => {
     mutate(postId)
   }
-  console.log(data)
   return { onLikePost, isPending , data}
 }

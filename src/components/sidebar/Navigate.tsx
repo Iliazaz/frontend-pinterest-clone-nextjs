@@ -20,7 +20,7 @@ export const Navigate: React.FC<NavigateProps> = ({
     >
       <nav className='flex flex-col gap-8 items-center'>
         <Link href='/'>
-          <Image src='Pinterest.svg' alt='logo' width={27} height={27} />
+          <Image src='/Pinterest.svg' alt='logo' width={27} height={27} />
         </Link>
 
         {navigate.map((item) => (

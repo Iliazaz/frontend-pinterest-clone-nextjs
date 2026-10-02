@@ -3,6 +3,7 @@ import Image from 'next/image'
 import React from 'react'
 import { Button } from '../ui/button'
 import { ArrowLeft, Maximize2, ScanSearch } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 
 interface ImageMainProps {
   imageUrl: string
@@ -12,10 +13,13 @@ export const ImageMain: React.FC<ImageMainProps> = ({
   imageUrl,
   className,
 }) => {
-  console.log(imageUrl)
+  const router = useRouter()
   return (
     <div className='p-3 flex flex-1 justify-center items-center'>
-      <div className='absolute top-4 left-4 rounded-lg  bg-white text-black opacity-70 hover:bg-gray-100 p-3'>
+      <div
+        onClick={() => router.back()}
+        className='absolute z-30 top-4 left-4 rounded-lg  bg-white text-black opacity-70 hover:bg-gray-100 p-3 cursor-pointer'
+      >
         <ArrowLeft width={30} height={30} />
       </div>
       <div

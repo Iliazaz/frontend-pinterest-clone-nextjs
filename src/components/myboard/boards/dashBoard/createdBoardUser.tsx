@@ -10,7 +10,7 @@ export const CreatedBoardUser: React.FC = () => {
   const { data, isPending } = useGetAllDashBoard()
 
   return (
-    <div className=''>
+    <div className='flex gap-5'>
       {/* Карточка доски */}
 
       {data === null || data === undefined || data.length === 0 ? (

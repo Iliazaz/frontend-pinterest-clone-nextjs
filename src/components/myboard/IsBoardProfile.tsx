@@ -46,15 +46,17 @@ export const IsBoardProfile: React.FC<IsBoardProfileProps> = ({
         </div>
 
         {/* Карточка доски */}
-        {data?.map((items) => (
-          <div className='mx-12'>
-            <DashBordCard
-              key={items.id}
-              name={items.name}
-              imageUrl={items.posts[0].imageURL}
-            />
-          </div>
-        ))}
+        <div className='flex gap-5'>
+          {data?.map((items) => (
+            <div className=''>
+              <DashBordCard
+                key={items.id}
+                name={items.name}
+                imageUrl={items.posts[0].imageURL}
+              />
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Доски профиля пользователя */}

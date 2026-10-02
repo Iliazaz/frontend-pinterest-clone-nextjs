@@ -9,11 +9,11 @@ export const SavedBoard: React.FC = () => {
   const { data, isPending } = useGetAllDashBoard()
 
   return (
-    <div className=''>
+    <div className='flex gap-5'>
       {/* Карточка доски */}
 
       {data === null || data === undefined || data.length === 0 ? (
-        <div className='flex items-center justify-center'>
+        <div className='flex items-center justify-center w-full'>
           <NotItems image={NotItemImage} textButton='Создать пин' />
         </div>
       ) : (

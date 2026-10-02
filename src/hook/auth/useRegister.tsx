@@ -22,7 +22,7 @@ export const useRegister = (avatarData: File | null) => {
     onSuccess: () => {
       form.reset()
       toast.success('Вы успешно зарегистрировались')
-      router.replace('/')
+      router.back()
     },
     onError(error: any) {
       if (

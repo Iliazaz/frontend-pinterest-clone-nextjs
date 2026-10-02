@@ -16,6 +16,7 @@ interface PinMainProps {
 
 export const PinMain: React.FC<PinMainProps> = ({ id, className }) => {
   const [liked, setLiked] = React.useState(false)
+  const [openComments, setOpenComments] = React.useState<boolean>(false)
 
   const { data, isPending } = useGetByIdPost(id)
 
@@ -24,7 +25,6 @@ export const PinMain: React.FC<PinMainProps> = ({ id, className }) => {
 
     setLiked(savedLiked === 'true')
   }, [id])
-
 
   // ПОКА ВОТ ТАК ЧЕРЕЗ LOCALSTORAGE НО ПОТОМ НАДО ИСПРАВИТЬ И СДЕЛАТЬ ЧЕРЕЗ BACKEND
   const handleSetLiked: React.Dispatch<React.SetStateAction<boolean>> = (
@@ -61,6 +61,7 @@ export const PinMain: React.FC<PinMainProps> = ({ id, className }) => {
               <ButtonPins
                 postId={id}
                 liked={liked}
+                setOpenComments={setOpenComments}
                 setLiked={handleSetLiked}
                 likeCount={data._count.likes}
               />
@@ -93,7 +94,12 @@ export const PinMain: React.FC<PinMainProps> = ({ id, className }) => {
                 <hr />
               </div>
 
-              <CommentsMain postId={id} commentsCount={data._count.comments} />
+              <CommentsMain
+                openComments={openComments}
+                setOpenComments={setOpenComments}
+                postId={id}
+                commentsCount={data._count.comments}
+              />
             </div>
 
             <FormComments postId={id} />

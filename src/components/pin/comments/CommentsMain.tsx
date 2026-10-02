@@ -8,30 +8,37 @@ import { CommentCardList } from './CommentCartList'
 interface CommentsMainProps {
   postId: string
   commentsCount: number
+  openComments: boolean
+  setOpenComments: React.Dispatch<React.SetStateAction<boolean>>
   className?: string
 }
 
 export const CommentsMain: React.FC<CommentsMainProps> = ({
   postId,
+  openComments,
+  setOpenComments,
   className,
   commentsCount,
 }) => {
-  const [openComments, setOpenComments] = React.useState<boolean>(false)
-
   return (
     <div className={cn('flex flex-col py-3 px-3 gap-3', className)}>
       <div className='flex items-center justify-between'>
-        <span className='font-bold'>{commentsCount} комментарий</span>
+        <span
+          onClick={() => setOpenComments(!openComments)}
+          className='font-bold cursor-pointer'
+        >
+          {commentsCount} комментарий
+        </span>
 
         {openComments ? (
           <ChevronUp
             onClick={() => setOpenComments(false)}
-            className='text-secondary-text w-8 h-8 '
+            className='text-secondary-text w-8 h-8 cursor-pointer'
           />
         ) : (
           <ChevronDown
             onClick={() => setOpenComments(true)}
-            className='text-secondary-text w-8 h-8 '
+            className='text-secondary-text w-8 h-8 cursor-pointer'
           />
         )}
       </div>

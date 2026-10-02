@@ -3,10 +3,12 @@ import { useLikePost } from '@/hook/like/useLikePost'
 import { ChevronDown, Ellipsis, Heart, MessageCircle } from 'lucide-react'
 import React from 'react'
 import { Button } from '../ui/button'
+import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip'
 
 interface ButtonPinsProps {
   liked: boolean
   setLiked: React.Dispatch<React.SetStateAction<boolean>>
+  setOpenComments: React.Dispatch<React.SetStateAction<boolean>>
   postId: string
   likeCount: number
   className?: string
@@ -16,7 +18,9 @@ export const ButtonPins: React.FC<ButtonPinsProps> = ({
   postId,
   liked,
   setLiked,
+  setOpenComments,
   likeCount,
+
   className,
 }) => {
   // ПОКА ВОТ ТАК ЧЕРЕЗ LOCALSTORAGE НО ПОТОМ НАДО ИСПРАВИТЬ И СДЕЛАТЬ ЧЕРЕЗ BACKEND
@@ -51,36 +55,61 @@ export const ButtonPins: React.FC<ButtonPinsProps> = ({
   return (
     <div className={className ?? 'flex gap-3 justify-between'}>
       <div className='flex gap-6 items-center'>
-        <div className='flex gap-2 items-center'>
-          <button
-            type='button'
-            onClick={handleLike}
-            disabled={isPending}
-            className='cursor-pointer p-3 rounded-sm hover:bg-secondary'
-          >
-            <Heart
-              width={25}
-              height={25}
-              fill={liked || likeCount < 0 ? 'currentColor' : 'none'}
-            />
-          </button>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <div className='flex gap-2 items-center'>
+              <button
+                type='button'
+                onClick={handleLike}
+                disabled={isPending}
+                className='cursor-pointer p-3 rounded-sm hover:bg-secondary'
+              >
+                <Heart
+                  width={25}
+                  height={25}
+                  fill={liked || likeCount < 0 ? 'currentColor' : 'none'}
+                />
+              </button>
 
-          <span className='font-bold'>{localLikeCount}</span>
-        </div>
+              <span className='font-bold'>{localLikeCount}</span>
+            </div>
+          </TooltipTrigger>
 
-        <button
-          type='button'
-          className='cursor-pointer p-3 rounded-sm hover:bg-secondary'
-        >
-          <MessageCircle />
-        </button>
+          <TooltipContent className='p-3' side='bottom'>
+            Отредактировать
+          </TooltipContent>
+        </Tooltip>
 
-        <button
-          type='button'
-          className='cursor-pointer p-3 rounded-sm hover:bg-secondary'
-        >
-          <Ellipsis />
-        </button>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <button
+              onClick={() => setOpenComments(true)}
+              type='button'
+              className='cursor-pointer p-3 rounded-sm hover:bg-secondary'
+            >
+              <MessageCircle />
+            </button>
+          </TooltipTrigger>
+
+          <TooltipContent className='p-3' side='bottom'>
+            Комментарии
+          </TooltipContent>
+        </Tooltip>
+
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <button
+              type='button'
+              className='cursor-pointer p-3 rounded-sm hover:bg-secondary'
+            >
+              <Ellipsis />
+            </button>
+          </TooltipTrigger>
+
+          <TooltipContent className='p-3' side='bottom'>
+            Другие действия
+          </TooltipContent>
+        </Tooltip>
       </div>
 
       <div className='flex gap-5'>

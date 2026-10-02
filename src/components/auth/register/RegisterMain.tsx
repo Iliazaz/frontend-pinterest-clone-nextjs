@@ -4,10 +4,10 @@ import Image from 'next/image'
 import React from 'react'
 import { FormFailed } from '../../ui/form-failed'
 import { Button } from '../../ui/button'
-import { FormAvatarRegister } from '../../ui/form-avatar-register'
 import { cn } from '@/lib/utils'
 import { useRegister } from '@/hook/auth/useRegister'
 import { validEmail } from '@/constrants/value-email'
+import { FormImageUpload } from '@/components/ui/form-image-upload'
 
 interface RegisterMainProps {
   setChangeOfForm: (changeOfForm: boolean) => void
@@ -77,8 +77,8 @@ export const RegisterMain: React.FC<RegisterMainProps> = ({
           error={form.formState.errors.password?.message}
         />
 
-        <FormAvatarRegister
-          setAvatarData={setAvatarData}
+        <FormImageUpload
+          setImage={setAvatarData}
           {...form.register('avatar', {})}
         />
 

@@ -20,7 +20,7 @@ export const useLogin = () => {
     onSuccess() {
       form.reset()
       toast.success('Вы вошли в аккаунт')
-      router.replace('/')
+      router.back()
     },
     onError(error: any) {
       if (

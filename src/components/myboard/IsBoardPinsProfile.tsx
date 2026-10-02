@@ -28,15 +28,16 @@ export const IsBoardPinsProfile: React.FC<IsBoardPinsProfilePros> = ({
 
             {/* Карточка доски */}
 
-            {data?.map((items) => (
-              <DashBordCard
-                key={items.id}
-                name={items.name}
-                imageUrl={items.posts[0].imageURL}
-              />
-            ))}
+            <div className='flex gap-2'>
+              {data?.map((items) => (
+                <DashBordCard
+                  key={items.id}
+                  name={items.name}
+                  imageUrl={items.posts[0].imageURL}
+                />
+              ))}
+            </div>
           </div>
-
           {/* Пины профиля пользователя */}
           <div className=''>
             <h2 className='font-bold text-xl mb-5'>Ваши сохраненные пины</h2>

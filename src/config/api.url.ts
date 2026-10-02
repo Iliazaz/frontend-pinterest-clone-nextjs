@@ -9,5 +9,7 @@ export const API_URL = {
   post: (url = '') => `/post${url}`,
   pin: (url = '') => `/pin${url}`,
   comments: (url = '') => `/comments${url}`,
+  replated: (url = '') => `/comments${url}`,
+
 
 }

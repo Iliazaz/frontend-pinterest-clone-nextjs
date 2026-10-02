@@ -17,7 +17,7 @@ export const DashBordCard: React.FC<IDashBoardCard> = ({
   console.log(imageUrl)
   return (
     <div className={cn('flex flex-col', className)}>
-      <div className='w-[236px] h-[160px] relative rounded-xl bg-black border-black border-2 '>
+      <div className='w-[236px] h-[160px] relative rounded-xl bg-black '>
         <img className='w-full h-full rounded-xl opacity-70' src={imageUrl} alt={name} />
 
         <Button

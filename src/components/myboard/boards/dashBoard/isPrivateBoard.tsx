@@ -10,7 +10,7 @@ import { DashBoardCardProfile } from '../DashBoardCardProfile'
 export const IsPrivateBoard: React.FC = () => {
   const { data, isPending } = useGetAllBoardIsPrivate()
   return (
-    <div className=''>
+    <div className='flex gap-5'>
       {/* Карточка доски */}
 
       {data === null || data === undefined || data.length === 0 ? (
