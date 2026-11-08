@@ -9,7 +9,17 @@ import {
 
 class PostService {
   async createPost(data: ICreatePostDto) {
-    const response = await axiosWithAuth.post(API_URL.post('/'), data)
+    const formData = new FormData()
+
+    formData.append('title', data.title)
+    formData.append('dashBoardId', data.dashBoardId)
+    formData.append('description', data.description)
+    formData.append('imageURL', data.imageURL)
+    console.log(data)
+   console.log([...formData.entries()])
+
+
+    const response = await axiosWithAuth.post(API_URL.post(), formData)
 
     return response.data
   }

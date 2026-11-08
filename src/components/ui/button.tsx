@@ -41,6 +41,7 @@ const buttonVariants = cva(
           'border border-pinterest-gray-border bg-white text-pinterest-black',
           'hover:bg-pinterest-gray-light',
           'rounded-xl',
+          'cursor-pointer'
         ],
 
         // 👻 Прозрачная (Иконки, меню)
@@ -48,6 +49,7 @@ const buttonVariants = cva(
           'text-pinterest-black',
           'hover:bg-pinterest-gray-light',
           'rounded-full',
+          'cursor-pointer'
         ],
 
         // ❌ Удаление
@@ -55,6 +57,7 @@ const buttonVariants = cva(
           'bg-red-50 text-red-600',
           'hover:bg-red-100',
           'rounded-xl',
+          'cursor-pointer'
         ],
 
         // 🔗 Текстовая ссылка

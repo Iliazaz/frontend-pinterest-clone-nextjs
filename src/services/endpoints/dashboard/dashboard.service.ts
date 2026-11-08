@@ -9,6 +9,9 @@ class DashBoardService {
   async getAll(): Promise<IDashBoardResponse[]> {
     return (await axiosClassic.get(API_URL.dashboard())).data.data
   }
+  async getAllIsUsers(): Promise<IDashBoardResponse[]> {
+    return (await axiosClassic.get(API_URL.dashboard('/my'))).data.data
+  }
 
   async getAllIsPrivate(): Promise<IDashBoardResponse[]> {
     return (await axiosWithAuth.get(API_URL.dashboard('/isPrivate'))).data.data

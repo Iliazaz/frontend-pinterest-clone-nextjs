@@ -56,7 +56,7 @@ export const FormImageUpload: React.FC<FormImageUploadProps> = ({
   return (
     <div
       onClick={handleClick}
-      className='relative group  flex flex-col justify-center gap-5 items-center border border-light-border rounded-2xl hover:bg-secondary hover:border-Pinterest-red-hover cursor-pointer bg-secondary'
+      className='relative group flex flex-col justify-center gap-5 items-center border border-light-border rounded-2xl hover:bg-secondary hover:border-Pinterest-red-hover cursor-pointer bg-secondary'
     >
       <Input
         ref={inputRef}
@@ -66,11 +66,11 @@ export const FormImageUpload: React.FC<FormImageUploadProps> = ({
       />
 
       {preview ? (
-        <div className=' p-7 max-h-[600px] min-h-[100px] rounded-2xl'>
+        <div className=' p-7 rounded-2xl'>
           <img
             src={preview}
-            alt='Avatar'
-            className='w-full h-full object-cover rounded-lg'
+            alt='createImage6'
+            className='w-full h-full max-h-[400px] min-h-[100px] max-w-[500px] object-cover rounded-lg'
           />
 
           <Button

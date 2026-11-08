@@ -1,7 +1,8 @@
 export interface ICreatePostDto {
   title: string
   dashBoardId: string
-  description: string | undefined
+  description: string
+  imageURL: string | File
 }
 
 export interface IPost {

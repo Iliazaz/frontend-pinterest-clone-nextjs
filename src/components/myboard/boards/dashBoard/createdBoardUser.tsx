@@ -22,7 +22,7 @@ export const CreatedBoardUser: React.FC = () => {
           <DashBoardCardProfile
             key={items.id}
             name={items.name}
-            imageUrl={items.posts[0].imageURL}
+            imageUrl={items.posts[0]?.imageURL || '/404ImageBoard.png'}
           />
         ))
       )}

@@ -1,10 +1,21 @@
 import { dashBoardService } from '@/services/endpoints/dashboard/dashboard.service'
-import { ICreateDashBoard } from '@/shared/types/dashboard.interface'
+import {
+  ICreateDashBoard,
+  IDashBoardResponse,
+} from '@/shared/types/dashboard.interface'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import React from 'react'
+import { SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 
 export const useCreateDashBoard = () => {
+  const form = useForm<IDashBoardResponse>({
+    mode: 'onChange',
+    // defaultValues: {
+    //   isPrivate: false,
+    // },
+  })
+
   const { mutate, isPending } = useMutation({
     mutationKey: ['dashboard'],
     mutationFn: async (data: ICreateDashBoard) => {
@@ -12,6 +23,7 @@ export const useCreateDashBoard = () => {
     },
 
     onSuccess: () => {
+      form.reset()
       toast.success('Доска создана')
     },
     onError: (error: any) => {
@@ -33,9 +45,11 @@ export const useCreateDashBoard = () => {
     },
   })
 
-  const onCreatedDashBoard = (data: ICreateDashBoard) => {
-    mutate(data)
+  const onCreatedDashBoard: SubmitHandler<ICreateDashBoard> = (data) => {
+    mutate({
+      ...data,
+    })
   }
 
-  return { onCreatedDashBoard, isPending }
+  return { onCreatedDashBoard, isPending, form }
 }

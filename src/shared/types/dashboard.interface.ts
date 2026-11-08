@@ -16,3 +16,9 @@ export interface IDashBoardResponse {
   userId: string
   createdAt: string
 }
+
+export interface ISelectBoard {
+  id: string,
+  imageURL: string,
+  name: string
+}
