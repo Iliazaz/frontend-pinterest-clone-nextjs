@@ -17,7 +17,7 @@ export const IsBoardPinsProfile: React.FC<IsBoardPinsProfilePros> = ({
 
   return (
     // {/* Часть с пинами */}
-    <div className='flex flex-col gap-5 mx-5 my-12'>
+    <div className='gap-5 mx-5 my-12'>
       {/* Рекомендованные доски */}
       {isPending ? (
         <Loading />
@@ -49,7 +49,6 @@ export const IsBoardPinsProfile: React.FC<IsBoardPinsProfilePros> = ({
             ) : (
               <IsPrivateBoardCreatedPins />
             )}
-            {/* <PinBoard pins={pins} loadMoreRef={loadMoreRef} /> */}
           </div>
         </>
       )}

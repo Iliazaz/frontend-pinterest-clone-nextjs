@@ -22,7 +22,7 @@ export const PinBoard: React.FC<IPinsBoardProps> = ({ pins, loadMoreRef }) => {
       className={
         pins[0] === null || pins[0] === undefined || pins.length === 0
           ? 'flex items-center justify-center'
-          : 'grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4'
+          : 'columns-2 md:columns-3 lg:columns-4 xl:columns-5 gap-4 '
       }
     >
       {pins[0] === null || pins[0] === undefined || pins.length === 0 ? (

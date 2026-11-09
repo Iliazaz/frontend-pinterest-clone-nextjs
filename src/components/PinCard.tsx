@@ -21,44 +21,47 @@ export const PinCard: React.FC<IPinCardProps> = ({ pin, onSavePin }) => {
   }
 
   return (
-    <Link href={`/pin/${pin.id}`} className='group relative rounded-xl '>
+    <div className='group relative rounded-xl break-inside-avoid mb-4'>
       <img
         src={pin.imageURL}
         alt={pin.id}
-        className='w-full rounded-xl cursor-pointer '
+        className='w-full h-auto rounded-xl cursor-pointer '
       />
       {/* При наведении */}
-      <div className='hidden group-hover:block absolute top-0 w-full rounded-xl h-full group-hover:bg-black/10'>
-        {!isSaved ? (
-          <div
-            onClick={() => handleSaved(pin.id)}
-            className='flex items-center justify-end'
-          >
-            <Button className='px-7 py-6 m-3'>Сохранить</Button>
-          </div>
-        ) : (
-          <div
-            className='absolute flex top-0 left-0 right-0 py-4 pl-4 p-3 rounded-t-xl  justify-between items-center     
-'
-          >
-            <span className='font-bold'>Сохранено в..</span>
 
-            <div className='bg-white rounded-[10px] p-2 border-2'>
-              <Pen width={10} height={10} />
+      <Link href={`/pin/${pin.id}`}>
+        <div className='hidden group-hover:block absolute top-0 w-full rounded-xl h-full group-hover:bg-black/10'>
+          {!isSaved ? (
+            <div
+              onClick={() => handleSaved(pin.id)}
+              className='flex items-center justify-end'
+            >
+              <Button className='px-7 py-6 m-3'>Сохранить</Button>
+            </div>
+          ) : (
+            <div
+              className='absolute flex top-0 left-0 right-0 py-4 pl-4 p-3 rounded-t-xl  justify-between items-center     
+'
+            >
+              <span className='font-bold'>Сохранено в..</span>
+
+              <div className='bg-white rounded-[10px] p-2 border-2'>
+                <Pen width={10} height={10} />
+              </div>
+            </div>
+          )}
+
+          <div className='absolute flex gap-1 bottom-2 right-3'>
+            <div className='bg-white rounded-sm p-2 border-2'>
+              <Download width={15} height={15} />
+            </div>
+
+            <div className='bg-white rounded-sm p-2 border-2'>
+              <PencilLine width={15} height={15} />
             </div>
           </div>
-        )}
-
-        <div className='absolute flex gap-1 bottom-2 right-3'>
-          <div className='bg-white rounded-sm p-2 border-2'>
-            <Download width={15} height={15} />
-          </div>
-
-          <div className='bg-white rounded-sm p-2 border-2'>
-            <PencilLine width={15} height={15} />
-          </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   )
 }
