@@ -23,3 +23,14 @@ export const sortFilters = [
     value: 'isPrivate',
   },
 ] as const
+
+export const categoryPinsProfile = [
+  {
+    label: 'Созданные',
+    value: 'created',
+  },
+  {
+    label: 'Сохраненные',
+    value: 'saved',
+  },
+] as const

@@ -19,7 +19,7 @@ export const CreatedBoardPins: React.FC = () => {
         pins[0] === null || pins[0] === undefined || pins.length === 0
           ? 'flex items-center justify-center'
           : 'columns-2 md:columns-3 lg:columns-4 xl:columns-5 gap-4'
-      }
+      } 
     >
       {pins === null || pins === undefined || pins.length === 0 ? (
         <NotItems image={NotItemImage} textButton='Создать пин' />
@@ -27,7 +27,7 @@ export const CreatedBoardPins: React.FC = () => {
         pins?.map((pin) => (
           <div key={pin.id} className=''>
             {pin?.posts.map((item) => (
-              <PinCard key={pin.id} pin={item} onSavePin={onSavePin} />
+              <PinCard key={item.id} pin={item} onSavePin={onSavePin} />
             ))}
           </div>
         ))

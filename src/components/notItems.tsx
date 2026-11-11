@@ -33,7 +33,7 @@ export const NotItems: React.FC<NotItemsProps> = ({
           </span>
         </div>
 
-        <Link href={'/'}>
+        <Link href={'/pin-creation-tool'}>
           <Button>{textButton}</Button>
         </Link>
       </div>

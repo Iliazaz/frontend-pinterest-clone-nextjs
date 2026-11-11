@@ -11,9 +11,11 @@ interface ReplatedPinsProps {
 export const ReplatedPins: React.FC<ReplatedPinsProps> = ({ postId }) => {
   const { data, isPending } = useGetReplatedPost(postId)
 
+  console.log(data)
   if (!data) {
     return null
   }
+  
 
   return (
     <div>

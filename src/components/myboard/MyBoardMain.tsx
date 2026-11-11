@@ -1,15 +1,10 @@
 'use client'
 
 import React from 'react'
-import { DashBordCard } from '../DashBordCard'
 import { ProfileUser } from './ProfileUser'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { categoryFilters, sortFilters } from '@/constrants/filters-profile'
 import { ITypeCategory, ITypesSort } from '@/shared/types/categoy.types'
-import { SavePinsBoard } from './boards/pin/savePinsBoard'
-import { CreatedBoardPins } from './boards/pin/createdBoardPins'
-import { IsPrivateBoardCreatedPins } from './boards/pin/isPrivateBoardCreatedPins'
-import { useGetAllDashBoard } from '@/hook/dashboard/useGetAllDashBoard'
 import { IsBoardProfile } from './IsBoardProfile'
 import { IsBoardPinsProfile } from './IsBoardPinsProfile'
 
@@ -86,6 +81,7 @@ export const MyBoardMain: React.FC = () => {
         // {/* Часть с досками */}
         <IsBoardProfile activeSort={activeSort} />
       )}
+      
     </div>
   )
 }

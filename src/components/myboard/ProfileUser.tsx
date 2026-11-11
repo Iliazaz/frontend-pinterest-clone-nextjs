@@ -11,7 +11,7 @@ export const ProfileUser: React.FC = () => {
   return (
     <div className='flex flex-col justify-between gap-10'>
       <Link
-        href='/'
+        href={`/profile/${data?.data.nickName}?pins=saved`}
         className='grid grid-cols-2 justify-between items-center gap-2 p-3 hover:bg-gray-100 rounded-xl'
       >
         {data && !isPending && (
@@ -40,9 +40,9 @@ export const ProfileUser: React.FC = () => {
         </div>
       </Link>
 
-      <div className='flex justify-end'>
+      <Link href='/pin-creation-tool' className='flex justify-end'>
         <Button className='py-6'>Создать</Button>
-      </div>
+      </Link>
     </div>
   )
 }

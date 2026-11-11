@@ -36,7 +36,7 @@ export const ArrowPopoverProfile: React.FC<IArrowPopoverProfile> = ({
           Сейчас:
         </span>
         <Link
-          href={`/profile/${data.id}`}
+          href={`/myboard/${data.nickName}`}
           className='flex gap-3 items-center p-3 rounded-sm hover:bg-state'
         >
           <Image
